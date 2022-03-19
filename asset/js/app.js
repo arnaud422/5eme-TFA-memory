@@ -4,7 +4,6 @@
 const canvas = document.getElementById('jeu')
 var img,p;
 
-
 /* #### variable pur js #### */
 tailleGrille = 4
 paireImages = []
@@ -81,7 +80,7 @@ function montrerCarte(x,y){
     }else if(carteVisible == 1){
         carteDeux = retournerCarter(x,y)
 
-        verifieSiCarteIdentique(carteUn, carteDeux)
+        carteUn+1 && carteDeux != undefined ? verifieSiCarteIdentique(carteUn, carteDeux) : null
     }
 }
 
@@ -89,10 +88,12 @@ function retournerCarter(x,y){
     if(carteVisible < 2){
         carte = obtenirCarte(x,y)
 
-        changeEtatCarte(carte)
-        carteVisible++
+        if(tableauVirtuel[carte] != paireImages[carte][1]){
+            changeEtatCarte(carte)
+            carteVisible++
 
-        return carte
+            return carte
+        }
     }
 }
 
@@ -100,6 +101,8 @@ function verifieSiCarteIdentique(carteUn, carteDeux){
     
     if(paireImages[carteUn][1] == paireImages[carteDeux][1]){
         //alert('carte identique')
+        tableauVirtuel[carteUn] = paireImages[carteUn][1]
+        tableauVirtuel[carteDeux] = paireImages[carteDeux][1]
 
         carteVisible = 0
         carteUn = null
