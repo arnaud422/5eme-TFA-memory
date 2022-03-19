@@ -2,8 +2,8 @@
 SUPER MEMORY
 
 ###############################
-#	     Explication Simple	    #
-###############################
+Explication Simple	    
+
 
 	• Le joueur retourne deux cartes parmis toutes les cartes proposé.
 	• Si les deux cartes ne sont pas identique alors le score augmente de 1 
@@ -11,8 +11,8 @@ SUPER MEMORY
 	Le but du jeu est d'avoir le score le plus petit.
 
 #####################################
-#	    Régles (de base v.1.0.0)      #
-#####################################
+Régles (de base v.1.0.0)      
+
 
 	1) Le joueur retourne deux cartes parmis celle qui lui sont proposé
 	2) Si les deux cartes sont différente alors le score augmente de 1 sinon si elles sont identiques le score diminue de 1
@@ -21,8 +21,8 @@ SUPER MEMORY
 	4) recomencer jusqu'a ce que toute les paires est été trouvé.
 
 ###############################
-#	    Méthode de travail	    #
-###############################
+Méthode de travail
+
 
 • Utilisattion de Github pour le partage de fichier
 • Partage des tâches administrative et pratique en fonction des compétences (explication des potentielle incompréhention au binôme)
