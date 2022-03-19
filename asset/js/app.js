@@ -49,9 +49,9 @@ function createTablePhysic(){
     
     if(!peutJouer){
         for(x = 0; x < tailleGrille; x++){
-            table += "<tr>"
+            table += `<tr class="${x}">`
             for(y = 0; y < tailleGrille; y++){
-                table += `<td onclick="montrerCarte(${y},${x})"><p class="text-card">Afficher</p><img src="${paireImages[obtenirCarte(x, y)][0]}" class="hidden" alt="Carte de jeu"/></td>`   
+                table += `<td onclick="montrerCarte(${y},${x})"><p class="text-card">Afficher</p><img src="${paireImages[obtenirCarte(y, x)][0]}" class="hidden" alt="Carte de jeu"/></td>`   
             }
             table += "</tr>";
         }
@@ -72,6 +72,7 @@ function demarrerSession(){
 //function qui trouve et retourne la carte selectionner
 function montrerCarte(x,y){
     carte = obtenirCarte(x,y)
+    console.log(carte)
     if(carteVisible < 2){
          console.log(paireImages[carte])
     }
