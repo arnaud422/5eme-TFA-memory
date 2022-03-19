@@ -3,18 +3,27 @@
 /* #### variable objet HTML #### */
 const canvas = document.getElementById('jeu')
 
+
 /* #### variable pur js #### */
 tailleGrille = 4
 paireImages = []
 tableauVirtuel = new Array(tailleGrille * tailleGrille)
+peutJouer = false
+carteVisible = 0
 
+
+function obtenirCarte(x, y){
+    return y * tailleGrille + x
+}
 //function qui permet de créer le tableau [paireImages] en fonction de la taille de la grille
 function createPaireInTable(){
     var i, j
-
-    for(var i = 0; i <= tailleGrille * 2; i++){
-        for(var j = 0; j<2; j++){
-            paireImages.push([`./asset/images/${i}.png`, i])
+    if(!peutJouer){
+        for(var i = 0; i < tailleGrille * 2; i++){
+            for(var j = 0; j<2; j++){
+                paireImages.push([`./asset/images/${i}.png`, i])
+            }
+            paireImages = tableShuffle(paireImages)
         }
     }
 }
@@ -37,14 +46,35 @@ function tableShuffle(tab){
 function createTablePhysic(){
     var x,y
     let table = "<table>"
-
-    for(x = 0;x < tailleGrille; x++){
-        table += "<tr>"
-        for(y = 0; y < tailleGrille; y++){
-         table += `<td><img src="${paireImages[(y*tailleGrille+x)][0]}" alt="Carte de jeu"/></td>`   
+    
+    if(!peutJouer){
+        for(x = 0; x < tailleGrille; x++){
+            table += "<tr>"
+            for(y = 0; y < tailleGrille; y++){
+                table += `<td onclick="montrerCarte(${y},${x})"><p class="text-card">Afficher</p><img src="${paireImages[obtenirCarte(x, y)][0]}" class="hidden" alt="Carte de jeu"/></td>`   
+            }
+            table += "</tr>";
         }
-        table += "</tr>";
+    
+        table += "</table>";
+        canvas.innerHTML += table
+        td = document.querySelectorAll('td')
     }
-    table += "</table>";
-    canvas.innerHTML += table
 }
+
+function demarrerSession(){
+    createPaireInTable()
+    createTablePhysic()
+    peutJouer = !peutJouer
+    
+}
+
+//function qui trouve et retourne la carte selectionner
+function montrerCarte(x,y){
+    carte = obtenirCarte(x,y)
+    if(carteVisible < 2){
+         console.log(paireImages[carte])
+    }
+}
+
+demarrerSession()
