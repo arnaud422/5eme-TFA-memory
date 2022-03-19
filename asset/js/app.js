@@ -2,6 +2,7 @@
 
 /* #### variable objet HTML #### */
 const canvas = document.getElementById('jeu')
+var img,p;
 
 
 /* #### variable pur js #### */
@@ -10,7 +11,8 @@ paireImages = []
 tableauVirtuel = new Array(tailleGrille * tailleGrille)
 peutJouer = false
 carteVisible = 0
-
+var carteUn
+var carteDeux
 
 function obtenirCarte(x, y){
     return y * tailleGrille + x
@@ -58,7 +60,8 @@ function createTablePhysic(){
     
         table += "</table>";
         canvas.innerHTML += table
-        td = document.querySelectorAll('td')
+        img = document.querySelectorAll('img')
+        p = document.querySelectorAll('p')
     }
 }
 
@@ -71,11 +74,52 @@ function demarrerSession(){
 
 //function qui trouve et retourne la carte selectionner
 function montrerCarte(x,y){
-    carte = obtenirCarte(x,y)
-    console.log(carte)
-    if(carteVisible < 2){
-         console.log(paireImages[carte])
+
+    if(carteVisible == 0){
+        carteUn = retournerCarter(x,y)
+        
+    }else if(carteVisible == 1){
+        carteDeux = retournerCarter(x,y)
+
+        verifieSiCarteIdentique(carteUn, carteDeux)
     }
+}
+
+function retournerCarter(x,y){
+    if(carteVisible < 2){
+        carte = obtenirCarte(x,y)
+
+        changeEtatCarte(carte)
+        carteVisible++
+
+        return carte
+    }
+}
+
+function verifieSiCarteIdentique(carteUn, carteDeux){
+    
+    if(paireImages[carteUn][1] == paireImages[carteDeux][1]){
+        //alert('carte identique')
+
+        carteVisible = 0
+        carteUn = null
+        carteDeux = null
+    }else{
+        //alert('pas identique')
+        new Timeur(1,()=>{
+            changeEtatCarte(carteUn)
+            changeEtatCarte(carteDeux)
+
+            carteVisible = 0
+            carteUn = null
+            carteDeux = null
+        })   
+    }
+}
+
+function changeEtatCarte(carte){
+    p[carte].classList.toggle('hidden')
+    img[carte].classList.toggle('hidden')
 }
 
 demarrerSession()
