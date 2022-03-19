@@ -2,7 +2,7 @@
 SUPER MEMORY
 
 ###############################
-Explication Simple	    
+	Explication Simple	    
 
 
 	• Le joueur retourne deux cartes parmis toutes les cartes proposé.
@@ -11,7 +11,7 @@ Explication Simple
 	Le but du jeu est d'avoir le score le plus petit.
 
 #####################################
-Régles (de base v.1.0.0)      
+	Régles (de base v.1.0.0)      
 
 
 	1) Le joueur retourne deux cartes parmis celle qui lui sont proposé
@@ -21,7 +21,7 @@ Régles (de base v.1.0.0)
 	4) recomencer jusqu'a ce que toute les paires est été trouvé.
 
 ###############################
-Méthode de travail
+	Méthode de travail
 
 
 • Utilisattion de Github pour le partage de fichier
