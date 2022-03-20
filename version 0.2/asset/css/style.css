@@ -5,9 +5,23 @@
     list-style: none;
     text-decoration: none;
 }
+body{
+    background-color: #2d3436;
+    color:rgba(252, 252, 252, 0.897);
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 2px;
+}
+.score{
+    font-size: 1.5rem
+}
+.container{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 table img{
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
 }
 .hidden{
     display: none;
@@ -16,8 +30,24 @@ table img{
     text-align: center;
 }
 td{
-    border: 1px solid blue;
+    width: 160px;
+    height: 160px;
     cursor: pointer;
-    width: 150px;
-    height: 150px;
+    border-radius: 5px;
+    background-color: #00b893a6;
+}
+.faceCacher{
+    background-color: #10ac84;
+    color: rgba(252, 252, 252, 0.897);
+}
+.victoire{
+    width: 40vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    color: aliceblue;
+    background-color: #00b893a6;
 }

@@ -1,5 +1,6 @@
 //variables
 const container = document.querySelector('.container')
+const info = document.querySelector('.info')
 let score = document.getElementById("score")
 let pCard, imgCard
 
@@ -54,11 +55,12 @@ function physicalArray() {
 
             for (x = 0; x < gridSize; x++) {
                 td = document.createElement('td');
+                td.setAttribute('class', 'faceCacher');
                 td.setAttribute('onclick', `cardClick(${getCard(x, y)})`);
 
                 p = document.createElement('p')
                 p.setAttribute('class', 'text-card');
-                p.appendChild(document.createTextNode("afficher"));
+                p.appendChild(document.createTextNode("Afficher"));
 
                 img = document.createElement('img')
                 img.setAttribute('src', `${picturePair[getCard(x, y)]}`)
@@ -71,7 +73,9 @@ function physicalArray() {
             }
         }
 
+        canPlay = !canPlay
         container.appendChild(table)
+        td = document.querySelectorAll("td")
         pCard = document.querySelectorAll(".text-card")
         imgCard = document.querySelectorAll(".img-card")
     }
@@ -98,9 +102,10 @@ function cardClick(card) {
             paireFound.push(picturePair[OneCard])
             if(paireFound.length === 8){
                 container.removeChild(table)
-                
+                isVictoire()
                 new Timeur(3,()=>{
                     main()
+                    info.classList.toggle('victoire')
                 })
             }
         }else{
@@ -114,12 +119,18 @@ function cardClick(card) {
     }
     return
 }
-
+//function qui retourne la carte si elle a pas été trouvé
 function cardReturn(card) {
     if(paireFound.indexOf(picturePair[card]) === -1){
+        td[card].classList.toggle('faceCacher')
         imgCard[card].classList.toggle('hidden')
         pCard[card].classList.toggle('hidden')
     }   
+}
+//wouhouuu VICTOIRE
+function isVictoire(){
+    info.classList.toggle('victoire')
+    score.innerHTML += `<br/><br/> Vous avez gagné !!`
 }
 
 function main() {
@@ -128,6 +139,7 @@ function main() {
     paireFound = []
     visibleCard = 0
     let OneCard,twoCard
+    score.innerHTML = 0
 
     createPicturePair()
     physicalArray()
