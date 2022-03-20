@@ -23,4 +23,3 @@ Méthode de travail
 	• Partage des tâches administrative et pratique en fonction des compétences (explication des potentielle incompréhention au binôme)
 	• Alernation analyse/programtion étape par étape ce qui facilite la résolution de potentiel soucis de logique
 
-//chef de groupe Arnaud Derison
