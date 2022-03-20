@@ -2,6 +2,7 @@
 
 /* #### variable objet HTML #### */
 const canvas = document.getElementById('jeu')
+let scoreInner = document.getElementById('score')
 var img,p;
 
 /* #### variable pur js #### */
@@ -60,28 +61,38 @@ function createTablePhysic(){
         table += "</table>";
         canvas.innerHTML += table
         img = document.querySelectorAll('img')
-        p = document.querySelectorAll('p')
+        p = document.querySelectorAll('.text-card')
     }
 }
 
 function demarrerSession(){
+    peutJouer = false   
+    paireImages = []
+    tableauVirtuel = new Array(tailleGrille * tailleGrille)
+    scoreInner.innerText = 0
+    canvas.innerHTML = ''
+
     createPaireInTable()
     createTablePhysic()
-    peutJouer = !peutJouer
-    
+
+    peutJouer = !peutJouer  
 }
 
 //function qui trouve et retourne la carte selectionner
 function montrerCarte(x,y){
-
     if(carteVisible == 0){
         carteUn = retournerCarter(x,y)
         
     }else if(carteVisible == 1){
         carteDeux = retournerCarter(x,y)
-
-        carteUn+1 && carteDeux != undefined ? verifieSiCarteIdentique(carteUn, carteDeux) : null
-    }
+        if(carteDeux != undefined){
+            tableauVirtuel[carteUn] = paireImages[carteUn][1]
+            tableauVirtuel[carteDeux] = paireImages[carteDeux][1]
+    
+            carteUn+1 && carteDeux != undefined ? verifieSiCarteIdentique(carteUn, carteDeux) : null  
+        }
+        
+    }   
 }
 
 function retournerCarter(x,y){
@@ -89,11 +100,13 @@ function retournerCarter(x,y){
         carte = obtenirCarte(x,y)
 
         if(tableauVirtuel[carte] != paireImages[carte][1]){
-            changeEtatCarte(carte)
             carteVisible++
+            console.log(carte)
+            changeEtatCarte(carte)
 
             return carte
         }
+        return;
     }
 }
 
@@ -101,14 +114,21 @@ function verifieSiCarteIdentique(carteUn, carteDeux){
     
     if(paireImages[carteUn][1] == paireImages[carteDeux][1]){
         //alert('carte identique')
-        tableauVirtuel[carteUn] = paireImages[carteUn][1]
-        tableauVirtuel[carteDeux] = paireImages[carteDeux][1]
-
+        // tableauVirtuel[carteUn] = paireImages[carteUn][1]
+        // tableauVirtuel[carteDeux] = paireImages[carteDeux][1]
+        
         carteVisible = 0
         carteUn = null
         carteDeux = null
+
+        scoreInner.innerText <= 0 ? scoreInner.innerText = 0 : scoreInner.innerText--
+
+        isVictoire()
     }else{
         //alert('pas identique')
+        scoreInner.innerText++
+        tableauVirtuel[carteUn] = undefined
+        tableauVirtuel[carteDeux] = undefined
         new Timeur(1,()=>{
             changeEtatCarte(carteUn)
             changeEtatCarte(carteDeux)
@@ -123,6 +143,20 @@ function verifieSiCarteIdentique(carteUn, carteDeux){
 function changeEtatCarte(carte){
     p[carte].classList.toggle('hidden')
     img[carte].classList.toggle('hidden')
+}
+
+function isVictoire(){
+    i = 0
+    tableauVirtuel.forEach(element => {
+        i++
+        if(i==15){
+            console.log('Victoire')
+
+            new Timeur(4, ()=>{
+                demarrerSession()
+            })
+        }
+    });
 }
 
 demarrerSession()
