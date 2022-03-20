@@ -22,7 +22,7 @@
 	• Alernation analyse/programtion étape par étape ce qui facilite la résolution de potentiel soucis de logique
 	
 ## Utilisation
-	• Télécharger le projet : git clone https://github.com/arnaud422/5eme-TFA-memory
+	• git clone https://github.com/arnaud422/5eme-TFA-memory
 	• cd ./5eme-TFA-memory/version 0.2/
 	• start index.html
 
