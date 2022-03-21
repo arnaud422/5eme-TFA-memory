@@ -1,7 +1,7 @@
 //classe timeur
 class Timeur{
 
-    constructor(tempDemande,quandTimeurFini){
+    constructor(tempDemande, quandTimeurFini){
         this.processus = null;
         this.tempRestant = tempDemande ? tempDemande : 120;
         this.quandTimeurFini = quandTimeurFini ? quandTimeurFini : null;
