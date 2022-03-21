@@ -1,4 +1,4 @@
-# 5eme-TFA-memory - SUPER MEMORY
+# 5eme•TFA•memory - SUPER MEMORY
 ## Explication Simple
 
 	• Le joueur retourne deux cartes parmis toutes les cartes proposé.
