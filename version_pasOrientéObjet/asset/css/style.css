@@ -1,0 +1,30 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    overflow: hidden;
+} 
+/* body{
+    background-color: red;
+} */
+.ligne{
+    display: flex;  
+    gap: 15px;
+    margin: 15px;
+}
+.card{
+    width: 150px;
+    height: 150px;
+    background-color: #4529FF;
+    border-radius: 5px;
+}
+span{
+    width: 100%;
+    height: 100%;
+}
+img{
+    margin: 10px;
+    width: 130px;
+    height: 130px;
+}
